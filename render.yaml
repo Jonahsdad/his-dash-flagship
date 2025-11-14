@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: his-dash-flagship
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn dash_app.app:server --workers 2 --threads 4 --timeout 120
+    envVars:
+      - key: API_BASE_URL        # <- point this at your FastAPI base
+        value: https://YOUR-LIPE-CORE.onrender.com
+      - key: BRAND
+        value: HYBRID INTELLIGENCE SYSTEMS
+      - key: STREAMLIT_ORIGIN    # not used here; kept for parity
+        value: https://your-streamlit-app.streamlit.app
